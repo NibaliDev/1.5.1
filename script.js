@@ -1,15 +1,16 @@
-function toggle(){
-    let imageContainer = document.getElementById("imageContainer");
+function add(items){
+    items.push(document.querySelector("input").value)
 
-    if (imageContainer.style.display !== "grid") {
-        imageContainer.style.display = "grid";
-    }
-    else {
-        imageContainer.style.display = "none";
+    document.querySelector("ul").innerHTML = "";
+
+    for (let i = 0; i < items.length; i++) {
+        let li = document.createElement("li");
+        li.textContent = items[i];
+        document.querySelector("ul").appendChild(li);
     }
 }
 
-let item = [];
+let items = [];
 
-let btn = document.getElementById("btn");
-btn.addEventListener("click", toggle);
+let addBtn = document.getElementById("addBtn");
+addBtn.addEventListener("click", () => add(items));
