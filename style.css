@@ -1,0 +1,94 @@
+:root {
+  --main-color: white;
+  --font-stack: 'Helvetica', sans-serif;
+  --main-margin: 0.5rem;
+  --main-padding: 0.5rem;
+  --border-radius: 5px;
+  --body-height: 100dvh;
+  --main-height: 4rem;
+  --backround-color: black;
+  --secondary-backround-color: rgb(63, 63, 63);
+  --link-color: #3498db;
+  --main-transition: color .15s ease-in-out;
+  --hover-color: rgb(142, 140, 140);
+  --form-color: black;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    
+    font: bold 1rem var(--font-stack);
+    max-width: 100%;
+}
+header {
+    background: var(--backround-color);
+    color: var(--main-color);
+    font: bold 4rem var(--font-stack);
+    padding-left: var(--main-padding) var(--main-padding);
+}
+nav, footer {
+    display: flex;
+    height: var(--main-height);
+    background: var(--secondary-backround-color);
+    color: var(--main-color);
+    font: bold 1rem var(--font-stack);
+    
+}
+nav {
+    flex-wrap: wrap;
+    padding: 0 var(--main-padding);
+    gap: clamp(0.5rem, 2vw, 1rem);
+}
+footer {
+    justify-content: center;
+    align-items: center;
+}
+main{
+    flex-grow: 5;
+    padding-left: var(--main-padding);
+    padding-right: var(--main-padding);
+}
+a {
+    text-decoration: none;
+    color: var(--link-color);
+    font: bold 1.5rem sans-serif;
+    transition: var(--main-transition);
+
+    padding-left: var(--main-padding);
+    padding-right: var(--main-padding);
+}
+a:hover {
+    color: var(--hover-color);
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: var(--main-margin);
+    max-width: 100%;
+}
+input, textarea {
+    padding: var(--main-padding);
+    border-radius: var(--border-radius);
+    border: var(--form-color) 1px solid;
+    font: bold 1rem var(--font-stack);
+    color: var(--form-color);
+    max-width: 100%;
+}
+.imgage-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    width: 75%;
+    border: 3px solid var(--form-color);
+    
+}
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  --border: 3px solid var(--form-color);
+}
