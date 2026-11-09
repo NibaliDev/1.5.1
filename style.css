@@ -12,6 +12,7 @@
   --main-transition: color .15s ease-in-out;
   --hover-color: rgb(142, 140, 140);
   --form-color: black;
+  --green-color:  #00C80080;
 }
 * {
     margin: 0;
@@ -114,4 +115,15 @@ button {
     font: bold 1rem var(--font-stack);
     color: var(--form-color);
     cursor: pointer;
+}
+.selected {
+    background-color: var(--green-color);
+}
+.rm-btn{
+    background-color: red;
+    display: none;
+}
+.row {
+    display: flex;
+    gap: 0.5rem;
 }
