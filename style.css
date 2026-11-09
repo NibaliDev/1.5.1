@@ -92,3 +92,26 @@ img {
   display: block;
   --border: 3px solid var(--form-color);
 }
+ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    align-items: center;
+    padding: var(--main-padding);
+    border-radius: var(--border-radius);
+    border: var(--form-color) 1px solid;
+}
+button {
+    padding: var(--main-padding);
+    border-radius: var(--border-radius);
+    border: var(--form-color) 1px solid;
+    font: bold 1rem var(--font-stack);
+    color: var(--form-color);
+    cursor: pointer;
+}
