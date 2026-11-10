@@ -22,10 +22,10 @@ function load(){
 
 
     if (selectedItems.length === 0) {
-        document.getElementById("rmBtn").style.display = "none";
+        document.getElementById("rmBtn").hidden = true;
     }
     else {
-        document.getElementById("rmBtn").style.display = "block";
+        document.getElementById("rmBtn").hidden = false;
     }
 
     renderList();
@@ -68,10 +68,24 @@ function renderList(){
     save()
 }
 
+function showError(message){
+    let error = document.getElementById("showError");
+    error.innerText = message;
+}
+
 function add(){
+    let value = document.querySelector("input").value;
+
+    if (value === "") {
+        showError("Du måste skriva något i fältet");
+        return;
+    }
+    
+    showError("");
+
     let id = Date.now().toString(36);
 
-    items.push([id, document.querySelector("input").value]);
+    items.push([id, value]);
     document.querySelector("input").value = "";
 
     renderList();

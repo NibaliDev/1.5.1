@@ -132,6 +132,9 @@ button {
     background-color: red;
     display: none;
 }
+.red {
+    color: red;
+}
 .row {
     display: flex;
     gap: 0.5rem;
