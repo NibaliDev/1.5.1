@@ -19,10 +19,19 @@
     padding: 0;
     box-sizing: border-box;
 }
+main {
+    flex: 1;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+}
 body {
-    
     font: bold 1rem var(--font-stack);
     max-width: 100%;
+
+    display: flex;
+    flex-direction: column;
 }
 header {
     background: var(--backround-color);
