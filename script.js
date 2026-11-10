@@ -43,7 +43,7 @@ function renderList(){
         li.querySelector("button").textContent = "Ta bort";
         li.querySelector("button").onclick = remove;
 
-        li.querySelector("span").textContent = items[i];
+        li.querySelector("span").textContent = items[i][1];
 
         li.addEventListener("click", toggleSelect);
         li.id = items[i][0];
