@@ -1,13 +1,25 @@
 function toggleSelect(e){
+    e.preventDefault();
 
     if (selectedItems.includes(e.target.id)) {
-        selectedItems.splice(selectedItems[e.target.id], 1);
-        e.target.classList.remove("selected");
+        selectedItems.pop(e.target.id);
     }
     else {
-        e.target.classList.toggle("selected");
         selectedItems.push(e.target.id);
     }
+
+    renderList();
+}
+
+function save(){
+    localStorage.setItem("items", JSON.stringify(items));
+    localStorage.setItem("selectedItems", JSON.stringify(selectedItems));
+}
+
+function load(){
+    items = JSON.parse(localStorage.getItem("items")) || [];
+    selectedItems = JSON.parse(localStorage.getItem("selectedItems")) || [];
+
 
     if (selectedItems.length === 0) {
         document.getElementById("rmBtn").style.display = "none";
@@ -15,9 +27,12 @@ function toggleSelect(e){
     else {
         document.getElementById("rmBtn").style.display = "block";
     }
+
+    renderList();
 }
 
-function renderList(items){
+
+function renderList(){
     document.querySelector("ul").innerHTML = "";
 
     for (let i = 0; i < items.length; i++) {
@@ -30,43 +45,66 @@ function renderList(items){
 
         li.querySelector("span").textContent = items[i];
 
-        li.onclick = toggleSelect;
-        li.id = i;
+        li.addEventListener("click", toggleSelect);
+        li.id = items[i][0];
 
         document.querySelector("ul").appendChild(li);
+
+        if (selectedItems.includes(li.id)) {
+            li.classList.add("selected");
+        }
+        else if (li.classList.contains("selected")) {
+            li.classList.remove("selected");   
+        }
     }
+
+    if (selectedItems.length === 0) {
+        document.getElementById("rmBtn").style.display = "none";
+    }
+    else {
+        document.getElementById("rmBtn").style.display = "block";
+    }
+
+    save()
 }
 
-function add(items){
-    items.push(document.querySelector("input").value)
+function add(){
+    let id = Date.now().toString(36);
 
+    items.push([id, document.querySelector("input").value]);
     document.querySelector("input").value = "";
 
-    renderList(items);
+    renderList();
 }
 
 function remove(e){
     e.preventDefault();
+    e.stopPropagation();
 
-    index = parseInt(e.target.id);
-    items.splice(index, 1);
+    items.pop(e.target.parentElement.id);
 
-    renderList(items);
+    if (selectedItems.includes(e.target.parentElement.id)) {
+        selectedItems.pop(e.target.parentElement.id);
+    } 
+
+    renderList();
 }
 
-function removeSelected(items){
+function removeSelected(){
     for (let i = selectedItems.length - 1; i >= 0; i--) {
         items.splice(selectedItems[i], 1);
+        selectedItems.splice(i, 1);
     }
 
-    alert(selectedItems);
-
-    renderList(items)
+    renderList();
 }
+
 
 
 let items = [];
 let selectedItems = [];
+load();
+renderList(items);
 
 let addBtn = document.getElementById("addBtn");
 addBtn.addEventListener("click", () => add(items));
